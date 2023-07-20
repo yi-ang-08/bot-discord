@@ -1,8 +1,9 @@
 import { REST, Routes } from "discord.js";
+import dotenv  from 'dotenv';
+dotenv.config();
 
-const CLIENT_ID = 1131443644981846096n;
-const TOKEN =
-  "MTEzMTQ0MzY0NDk4MTg0NjA5Ng.GhnOPj.IeH4xgkmXMeSw9LR2wXTxVpQLF84zgxU0fX0Ks";
+const CLIENT_ID = process.env.CLIENT_ID;
+const TOKEN = process.env.TOKEN
 const commands = [
   {
     name: "ping",
@@ -35,16 +36,16 @@ client.on("ready", () => {
 });
 
 client.on("interactionCreate", async (interaction) => {
-    console.log("interaction", interaction)
-    const { user } = interaction
+  console.log("interaction", interaction);
+  const { user } = interaction;
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === "ping") {
-    await interaction.reply("Pong!");
+    await interaction.reply("@here");
   }
 
   if (interaction.commandName === "lmao") {
-    await interaction.reply(`${user.username || 'lmao'}`);
+    await interaction.reply(`${user.username || "lmao"}`);
   }
 });
 
